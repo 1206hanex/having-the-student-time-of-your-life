@@ -1,4 +1,4 @@
-# having-the-student-time-of-your-life
+# Having the [Student] Time of Your Life
 
 ## Official repository of the University of Waikato's second-year Software Engineering project
 
