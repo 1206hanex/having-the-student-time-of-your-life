@@ -43,9 +43,9 @@ In terms of an implementation strategy, one potentially useful approach is to us
 
 Potentially useful topics and resources:
 
-The origins of User-scripting
-The TamperMonkey web browser extension
-Article (representative) about Exploratory Data Analysis
-Article (representative) about Learning Analytics
-Article (representative) about Self-Regulated Learning (SRL)
-Article (representative) about Dashboard-based User Interfaces
+- The origins of User-scripting
+- The TamperMonkey web browser extension
+- Article (representative) about Exploratory Data Analysis
+- Article (representative) about Learning Analytics
+- Article (representative) about Self-Regulated Learning (SRL)
+- Article (representative) about Dashboard-based User Interfaces
