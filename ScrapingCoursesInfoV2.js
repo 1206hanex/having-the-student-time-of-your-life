@@ -113,11 +113,11 @@ const fs = require('fs');
 		const fileNameGrade = `Assessments_${cleanedPaperCode}_${timestamp}.json`;
 		
 		//save timetable to JSON file
-		fs.writeFileSync(fileNameTime, JSON.stringify(timetableData, null, 2));
+		//fs.writeFileSync(fileNameTime, JSON.stringify(timetableData, null, 2));
 		console.log(`Saved full timetable data as ${fileNameTime}`);
 		
 		//save grade to JSON file
-		fs.writeFileSync(fileNameGrade, JSON.stringify(assessmentData, null, 2));
+		//fs.writeFileSync(fileNameGrade, JSON.stringify(assessmentData, null, 2));
 		console.log(`Saved full assessment data as ${fileNameGrade}`);
 		
 	} catch (error) {
