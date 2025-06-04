@@ -38,8 +38,10 @@ const fs = require('fs');
 	//load the pages
 	for (const { pid, paper_code } of codePairs) {
   		const currCode = encodeURIComponent(paper_code);
+		//change this if posible to grab the year (last 2 digits) and than based off the current month, generate A or B (as papers are only avalible once the sem has already started)
+		const tempHardCodeYear = '-25A%20(HAM)'
 		const page = await browser.newPage();
-		const url = `https://paperoutlines.waikato.ac.nz/outline/${currCode}`;
+		const url = `https://paperoutlines.waikato.ac.nz/outline/${currCode}${tempHardCodeYear}`;
 		try{
 			await page.goto(url, {waitUntil: 'domcontentloaded'});
 			console.log(`Opened ${currCode}`);
