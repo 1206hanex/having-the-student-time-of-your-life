@@ -27,6 +27,7 @@ CREATE TABLE user_papers (
   id INT AUTO_INCREMENT PRIMARY KEY,
   uid INT,
   pid INT,
+  is_active TINYINT(1) DEFAULT 0,
   FOREIGN KEY (uid) REFERENCES users(uid) ON DELETE CASCADE,
   FOREIGN KEY (pid) REFERENCES papers(pid) ON DELETE CASCADE
 );
