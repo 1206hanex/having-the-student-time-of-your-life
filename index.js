@@ -1,26 +1,60 @@
-const express = require('express');
-const app = express();
-const timetableRoute = require('./routes/timetable');
-const gradesRoute = require('./routes/timetable');
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("select-widget-container");
 
-//define a port 
-const PORT = 3000; 
+  const widget = document.createElement("div");
+  widget.className = "widget";
+  widget.textContent = "Select Papers";
 
-app.use(express.json());
+  const modal = document.createElement("div");
+  modal.className = "modal hidden";
+  modal.innerHTML = `
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>Select your papers for this semester</h2>
+      <p>Don't know what papers you are taking?</p>      
+      <a href="degree-planner.html">Go to Degree Planner</a><br>
+      <div id="paper-list"></div>
 
-//example route
-app.get('/', (req, res) => {
-  res.send('Welcome to the Student Life API!');
-});
+    </div>
+  `;
 
-//use the timetable route 
-app.use('/api/timetable', timetableRoute);
+  container.appendChild(widget);
+  document.body.appendChild(modal);
 
-//use the grades routes 
-app.use('/api/timetable', gradesRoute);
-  
+  widget.onclick = () => {
+  modal.classList.remove("hidden");
 
-//start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  const paperList = document.getElementById("paper-list");
+  paperList.innerHTML = "Loading...";
+
+  fetch("http://localhost:3000/api/papers", { credentials: "include" })
+    .then(res => res.json())
+    .then(papers => {
+      paperList.innerHTML = "";
+
+      papers.forEach(paper => {
+        const item = document.createElement("div");
+        item.className = "paper-item";
+        item.textContent = `${paper.paper_code} - ${paper.paper_name}`;
+
+        item.onclick = () => {
+          item.classList.toggle("selected");
+        };
+
+        paperList.appendChild(item);
+      });
+    })
+    .catch(err => {
+      console.error("Failed to fetch papers:", err);
+      paperList.innerHTML = "<p style='color:red;'>Failed to load papers.</p>";
+    });
+};
+
+
+  modal.querySelector(".close-btn").onclick = () =>
+    modal.classList.add("hidden");
+
+  modal.onclick = (e) => {
+    if (e.target === modal) modal.classList.add("hidden");
+  };
 });
